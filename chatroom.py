@@ -1,3 +1,7 @@
+from mess_gen import *
+import socket, threading
+
+
 #chatroom object
 class Chatroom(object):
 
