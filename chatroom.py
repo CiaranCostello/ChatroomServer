@@ -21,14 +21,18 @@ class Chatroom(object):
 		#add client to clients dictionary
 		self.clients[join_id] = (client_name, client)
 		#send joined message
-		packet = joined_message(self.chatroom_name, ip, port, self.room_ref, join_id).encode("utf-8")
+		message = joined_message(self.chatroom_name, ip, port, self.room_ref, join_id)
+		packet = message.encode("utf-8")
 		client.send(packet)
+		print("Replied: {}".format(message))
 		#notify chat that client has joined
 		self.spread_message(client_name, "{} has joined the conversation.".format(client_name))
 
 	def spread_message(self, sender, message):
-		packet = chat_message_spread(self.room_ref, sender, message).encode("utf-8")
+		message = chat_message_spread(self.room_ref, sender, message)
+		packet = message.encode("utf-8")
 		self.send_packet(packet)
+		print("Spread to group: {}".format(message))
 
 	def send_packet(self, packet):
 		for k, (c_n, c) in self.clients.items():
@@ -36,8 +40,10 @@ class Chatroom(object):
 			
 	def leave(self, join_id, client):
 		#send left message
-		packet = left_message(self.room_ref, join_id).encode("utf-8")
+		message = left_message(self.room_ref, join_id)
+		packet = message.encode("utf-8")
 		client.send(packet)
+		print("Relied: {}".format(message))
 		#only if client is in the chat
 		if join_id in self.clients:
 			(client_name, _) = self.clients[join_id]
