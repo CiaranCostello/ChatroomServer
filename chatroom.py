@@ -31,8 +31,7 @@ class Chatroom(object):
 		self.send_packet(packet)
 
 	def send_packet(self, packet):
-		print(self.clients)
-		for k, (c_n, c) in self.clients:
+		for k, (c_n, c) in self.clients.items():
 			c.send(packet)		
 			
 	def leave(self, join_id, client):
