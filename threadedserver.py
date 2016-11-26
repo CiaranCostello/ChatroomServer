@@ -102,7 +102,7 @@ class Server(object):
 							#parse
 							room_ref = parameter(data.split('\n')[0])
 							join_id = parameter(data.split('\n')[1])
-							client_name = parameter(data.split('\n')[3])
+							client_name = parameter(data.split('\n')[2])
 							#leave chatroom
 							self.rooms[room_ref].leave(join_id, client)
 
