@@ -93,9 +93,6 @@ class Server(object):
 								#create new chatroom
 								cr = Chatroom(chatroom_name, room_ref)
 								self.rooms[room_ref].append(cr)
-								print(room_ref)
-								print(self.rooms)
-								print(self.rooms[room_ref])
 								#join the aforesaid chatroom
 								cr.join(client_name, client, self.ip, self.port)
 							print("Joined chatroom.")
@@ -104,13 +101,10 @@ class Server(object):
 							print("Handling LEAVE_CHATROOM message.")
 							#handle a request to leave a chatroom
 							#parse
-							room_ref = parameter(data.split('\n')[0])
-							join_id = parameter(data.split('\n')[1])
+							room_ref = int(parameter(data.split('\n')[0]))
+							join_id = int(parameter(data.split('\n')[1]))
 							client_name = parameter(data.split('\n')[2])
 							#leave chatroom
-							print(room_ref)
-							print(self.rooms)
-							print(self.rooms[room_ref])
 							chatroom = self.rooms[room_ref][0]
 							chatroom.leave(join_id, client)
 
@@ -125,8 +119,8 @@ class Server(object):
 							print("Handling CHAT message.")
 							#send chat message to all members of the chat
 							#parse
-							room_ref = parameter(data.split('\n')[0])
-							join_id = parameter(data.split('\n')[1])
+							room_ref = int(parameter(data.split('\n')[0]))
+							join_id = int(parameter(data.split('\n')[1]))
 							client_name = parameter(data.split('\n')[2])
 							message = parameter(data.split('\n')[3])
 							#spread message
