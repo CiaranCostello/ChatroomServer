@@ -122,6 +122,7 @@ class Server(object):
 						print("Received message: {0}".format(data))
 						# Set the response to echo back the recieved data
 						if "HELO" in data:
+							print("Handling HELO message.")
 							print("Adding student id.")
 							response = "{3}IP:{0}\nPort:{1}\nStudentID:{2}\n".format(self.ip, self.port, std_ID, data)
 							client.send(response.encode("utf-8"))
@@ -130,6 +131,7 @@ class Server(object):
 							self.Stop()
 						elif "JOIN_CHATROOM:" in data:
 							#handle a request to join a chatroom
+							print("Handling JOIN_CHATROOM message.")
 							#parse
 							chatroom_name = data.split('\n')[0].parameter()
 							client_name = data.split('\n')[3].parameter()
@@ -151,8 +153,10 @@ class Server(object):
 								self.rooms[room_ref] = cr
 								#join the aforesaid chatroom
 								cr.join(client_name, client)
+							print("Joined chatroom.")
 
 						elif "LEAVE_CHATROOM:" in data:
+							print("Handling LEAVE_CHATROOM message.")
 							#handle a request to leave a chatroom
 							#parse
 							room_ref = data.split('\n')[0].parameter()
@@ -162,12 +166,14 @@ class Server(object):
 							self.rooms[room_ref].leave(join_id, client)
 
 						elif "DISCONNECT:" in data:
+							print("Handling DISCONNECT message.")
 							#handle a request to disconnect from server ie. kill socket connection and worker thread
 							#parse
 							client_name = data.split('\n')[2].parameter()
 							print("Calling Stop")
 							self.Stop()
 						elif "CHAT:" in data:
+							print("Handling CHAT message.")
 							#send chat message to all members of the chat
 							#parse
 							room_ref = data.split('\n')[0].parameter()
@@ -179,7 +185,8 @@ class Server(object):
 						print("Handled packet")
 					else:
 						raise error('Client disconnected')
-				except:
+				except Exception, e:
+					print(e)
 					client.close()
 					print("Got to break")
 					break
