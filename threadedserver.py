@@ -133,8 +133,8 @@ class Server(object):
 							#handle a request to join a chatroom
 							print("Handling JOIN_CHATROOM message.")
 							#parse
-							chatroom_name = data.split('\n')[0].parameter()
-							client_name = data.split('\n')[3].parameter()
+							chatroom_name = parameter(data.split('\n')[0])
+							client_name = parameter(data.split('\n')[3])
 							#check if chatroom exists
 							exists = False
 							for k, v in self.rooms:
@@ -159,9 +159,9 @@ class Server(object):
 							print("Handling LEAVE_CHATROOM message.")
 							#handle a request to leave a chatroom
 							#parse
-							room_ref = data.split('\n')[0].parameter()
-							join_id = data.split('\n')[1].parameter()
-							client_name = data.split('\n')[3].parameter()
+							room_ref = parameter(data.split('\n')[0])
+							join_id = parameter(data.split('\n')[1])
+							client_name = parameter(data.split('\n')[3])
 							#leave chatroom
 							self.rooms[room_ref].leave(join_id, client)
 
@@ -169,17 +169,17 @@ class Server(object):
 							print("Handling DISCONNECT message.")
 							#handle a request to disconnect from server ie. kill socket connection and worker thread
 							#parse
-							client_name = data.split('\n')[2].parameter()
+							client_name = parameter(data.split('\n')[2])
 							print("Calling Stop")
 							self.Stop()
 						elif "CHAT:" in data:
 							print("Handling CHAT message.")
 							#send chat message to all members of the chat
 							#parse
-							room_ref = data.split('\n')[0].parameter()
-							join_id = data.split('\n')[1].parameter()
-							client_name = data.split('\n')[2].parameter()
-							message = data.split('\n')[3].parameter()
+							room_ref = parameter(data.split('\n')[0])
+							join_id = parameter(data.split('\n')[1])
+							client_name = parameter(data.split('\n')[2])
+							message = parameter(data.split('\n')[3])
 							#spread message
 							self.rooms[room_ref].spread_message(client_name, message)
 						print("Handled packet")
