@@ -45,7 +45,7 @@ class Server(object):
 		self.rooms = {}
 		self.roomsLock = threading.Lock()
 
-	class chatroom(object):
+	class Chatroom(object):
 
 		def __init__(self, chatroom_name, room_ref):
 			self.lock = threading.Lock()
@@ -150,7 +150,7 @@ class Server(object):
 								self.room_ref_seed += 1
 								self.roomsLock.release()
 								#create new chatroom
-								cr = chatroom(chatroom_name, room_ref)
+								cr = Chatroom(chatroom_name, room_ref)
 								self.rooms[room_ref] = cr
 								#join the aforesaid chatroom
 								cr.join(client_name, client)
