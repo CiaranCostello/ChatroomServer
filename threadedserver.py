@@ -105,6 +105,7 @@ class Server(object):
 							join_id = parameter(data.split('\n')[1])
 							client_name = parameter(data.split('\n')[2])
 							#leave chatroom
+							print(self.rooms[room_ref])
 							chatroom = self.rooms[room_ref][0]
 							chatroom.leave(join_id, client)
 
