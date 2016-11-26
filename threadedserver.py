@@ -92,7 +92,7 @@ class Server(object):
 								self.roomsLock.release()
 								#create new chatroom
 								cr = Chatroom(chatroom_name, room_ref)
-								self.rooms[room_ref].apped(cr)
+								self.rooms[room_ref].append(cr)
 								#join the aforesaid chatroom
 								cr.join(client_name, client, self.ip, self.port)
 							print("Joined chatroom.")
