@@ -93,6 +93,8 @@ class Server(object):
 								#create new chatroom
 								cr = Chatroom(chatroom_name, room_ref)
 								self.rooms[room_ref].append(cr)
+								print(room_ref)
+								print(self.rooms[room_ref])
 								#join the aforesaid chatroom
 								cr.join(client_name, client, self.ip, self.port)
 							print("Joined chatroom.")
@@ -105,6 +107,7 @@ class Server(object):
 							join_id = parameter(data.split('\n')[1])
 							client_name = parameter(data.split('\n')[2])
 							#leave chatroom
+							print(room_ref)
 							print(self.rooms[room_ref])
 							chatroom = self.rooms[room_ref][0]
 							chatroom.leave(join_id, client)
