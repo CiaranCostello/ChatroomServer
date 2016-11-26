@@ -145,7 +145,7 @@ class Server(object):
 									exists = True
 							if not exists:
 								#get room ref
-								self.roomsLock.aquire()
+								self.roomsLock.acquire()
 								room_ref = self.room_ref_seed
 								self.room_ref_seed += 1
 								self.roomsLock.release()
