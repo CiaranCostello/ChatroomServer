@@ -132,8 +132,10 @@ class Server(object):
 							#handle a request to join a chatroom
 							print("Handling JOIN_CHATROOM message.")
 							#parse
-							chatroom_name = parameter(data.split('\n')[0])
-							client_name = parameter(data.split('\n')[3])
+							chatroom_name = parameter(data.split("\n")[0])
+							print(chatroom_name)
+							client_name = parameter(data.split("\n")[3])
+							print(client_name)
 							#check if chatroom exists
 							exists = False
 							for k, v in self.rooms:
@@ -190,7 +192,7 @@ class Server(object):
 					print("Got to break")
 					break
 		print("Worker dying")
-
+	
 	def Stop(self):
 		self.running = False
 		print("Running set to false")
