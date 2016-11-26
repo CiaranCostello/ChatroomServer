@@ -81,7 +81,7 @@ class Server(object):
 							for k, v in self.rooms:
 								#join
 								if v.chatroom_name is chatroom_name:
-									v.join(client_name, client)
+									v.join(client_name, client, self.ip, self.port)
 									exists = True
 							if not exists:
 								#get room ref
@@ -93,7 +93,7 @@ class Server(object):
 								cr = Chatroom(chatroom_name, room_ref)
 								self.rooms[room_ref] = cr
 								#join the aforesaid chatroom
-								cr.join(client_name, client)
+								cr.join(client_name, client, self.ip, self.port)
 							print("Joined chatroom.")
 
 						elif "LEAVE_CHATROOM:" in data:

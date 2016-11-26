@@ -12,7 +12,7 @@ class Chatroom(object):
 		self.join_id_seed = 0
 		self.room_ref = room_ref
 
-	def join(self, client_name, client):
+	def join(self, client_name, client, ip, port):
 		#generate join id and move on seed
 		self.lock.acquire()
 		join_id = self.join_id_seed
@@ -21,7 +21,7 @@ class Chatroom(object):
 		#add client to clients dictionary
 		self.clients[join_id] = (client_name, client)
 		#send joined message
-		packet = joined_message(self.chatroom_name, self.room_ref, join_id).encode("utf-8")
+		packet = joined_message(self.chatroom_name, ip, port, self.room_ref, join_id).encode("utf-8")
 		client.send(packet)
 		#notify chat that client has joined
 		self.spread_message(client_name, "{} has joined the conversation.".format(client_name))

@@ -1,6 +1,6 @@
 # Message string generators
-def joined_message(chatroom_name, room_ref, join_id):
-	return "JOINED_CHATROOM: {0}\nSERVER_IP: {1}\nPORT: {2}\nROOM_REF: {3}\nJOIN_ID: {4}".format(chatroom_name, self.ip, self.port, room_ref, join_id)
+def joined_message(chatroom_name, ip, port, room_ref, join_id):
+	return "JOINED_CHATROOM: {0}\nSERVER_IP: {1}\nPORT: {2}\nROOM_REF: {3}\nJOIN_ID: {4}".format(chatroom_name, ip, port, room_ref, join_id)
 
 def error_message(error_code, error_description):
 	return "ERROR_CODE: {0}\nERROR_DESCRIPTION: {1}".format(error_code, error_description)
