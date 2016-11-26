@@ -92,7 +92,7 @@ class Server(object):
 								self.roomsLock.release()
 								#create new chatroom
 								cr = Chatroom(chatroom_name, room_ref)
-								self.rooms[room_ref] = cr
+								self.rooms[room_ref].apped(cr)
 								#join the aforesaid chatroom
 								cr.join(client_name, client, self.ip, self.port)
 							print("Joined chatroom.")
@@ -105,8 +105,7 @@ class Server(object):
 							join_id = parameter(data.split('\n')[1])
 							client_name = parameter(data.split('\n')[2])
 							#leave chatroom
-							chatroom = self.rooms[room_ref]
-							print(chatroom)
+							chatroom = self.rooms[room_ref][0]
 							chatroom.leave(join_id, client)
 
 						elif "DISCONNECT:" in data:
