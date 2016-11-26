@@ -14,7 +14,7 @@ class Chatroom(object):
 
 	def join(self, client_name, client):
 		#generate join id and move on seed
-		self.lock.aquire()
+		self.lock.acquire()
 		join_id = self.join_id_seed
 		self.join_id_seed += 1
 		self.lock.release()
