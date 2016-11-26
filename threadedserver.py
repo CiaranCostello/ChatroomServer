@@ -4,6 +4,7 @@ import sys, argparse, os
 from urllib.request import urlopen
 from chatroom import Chatroom
 from mess_gen import *
+from collections import defaultdict
 
 std_ID = 13321463
 
@@ -28,7 +29,7 @@ class Server(object):
 		self.ip = ip
 		self.running = True
 		self.room_ref_seed = 0
-		self.rooms = {}
+		self.rooms = defaultdict(list)
 		self.roomsLock = threading.Lock()
 
 	def listen(self):
