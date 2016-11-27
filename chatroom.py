@@ -48,6 +48,4 @@ class Chatroom(object):
 		message = "{} has left the conversation.".format(client_name)
 		self.spread_message(client_name, message)
 		#only if client is in the chat
-		if join_id in self.clients:
-			#remove client from chat
-			del self.clients[join_id]
+		self.clients.pop(join_id, None)
