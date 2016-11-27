@@ -38,17 +38,16 @@ class Chatroom(object):
 		for k, (c_n, c) in self.clients.items():
 			c.send(packet)		
 			
-	def leave(self, join_id, client):
+	def leave(self, join_id, client, client_name):
 		#send left message
 		message = left_message(self.room_ref, join_id)
 		packet = message.encode("utf-8")
 		client.send(packet)
 		print("Relied: {}".format(message))
+		#notify chat that the client has left
+		message = "{} has left the conversation.".format(client_name)
+		self.spread_message(client_name, message)
 		#only if client is in the chat
 		if join_id in self.clients:
-			(client_name, _) = self.clients[join_id]
-			#notify chat that the client has left
-			message = "{} has left the conversation.".format(client_name)
-			self.spread_message(client_name, message)
 			#remove client from chat
 			del self.clients[join_id]

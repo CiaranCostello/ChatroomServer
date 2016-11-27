@@ -104,7 +104,7 @@ class Server(object):
 							client_name = parameter(data.split('\n')[2]).strip()
 							#leave chatroom
 							chatroom = self.rooms[room_ref]
-							chatroom.leave(join_id, client)
+							chatroom.leave(join_id, client, client_name)
 
 
 						elif "DISCONNECT:" in data:
