@@ -28,11 +28,10 @@ class Chatroom(object):
 		#notify chat that client has joined
 		self.spread_message("{} has joined the conversation.".format(client_name))
 
-	def spread_message(self, message):	
+	def spread_message(self, client_name, message):	
 		print("Spread to group:\n{}".format(message))
+		m = chat_message_spread(self.room_ref, client_name, message)
 		for k, (c_n, c) in self.clients.items():
-			m = chat_message_spread(self.room_ref, c_n, message)
-			print(m)
 			packet = m.encode("utf-8")
 			c.send(packet)
 			
@@ -44,7 +43,7 @@ class Chatroom(object):
 		print("Relied: {}".format(message))
 		#notify chat that the client has left
 		message = "{} has left the conversation.".format(client_name)
-		self.spread_message(message)
+		self.spread_message(client_name, message)
 		#only if client is in the chat
 		if join_id in self.clients:
 			#remove client from chat
