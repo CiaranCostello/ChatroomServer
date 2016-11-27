@@ -26,7 +26,7 @@ class Chatroom(object):
 		client.send(packet)
 		print("Replied: {}".format(message))
 		#notify chat that client has joined
-		self.spread_message("{} has joined the conversation.".format(client_name))
+		self.spread_message(client_name, "{} has joined the conversation.".format(client_name))
 
 	def spread_message(self, client_name, message):	
 		print("Spread to group:\n{}".format(message))
