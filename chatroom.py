@@ -29,7 +29,7 @@ class Chatroom(object):
 		self.spread_message("{} has joined the conversation.".format(client_name))
 
 	def spread_message(self, message):	
-		for k, (c_n, c) in self.client.items():
+		for k, (c_n, c) in self.clients.items():
 			message = chat_message_spread(self.room_ref, c_n, message)
 			packet = message.encode("utf-8")
 			c.send(packet)
