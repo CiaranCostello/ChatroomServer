@@ -136,8 +136,7 @@ class Server(object):
 						print("Handled packet")
 					else:
 						raise error('Client disconnected')
-				except e:
-					print(e)
+				except:
 					client.close()
 					print("Got to break")
 					break
