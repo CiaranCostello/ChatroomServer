@@ -51,3 +51,6 @@ class Chatroom(object):
 		print(self.clients)
 		self.clients.pop(join_id, None)
 		print(self.clients)
+
+	def isEmpty(self):
+		return not self.clients

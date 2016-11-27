@@ -105,6 +105,8 @@ class Server(object):
 							#leave chatroom
 							chatroom = self.rooms[room_ref]
 							chatroom.leave(join_id, client, client_name)
+							if chatroom.isEmpty():
+								self.rooms.pop(room_ref, None)
 
 
 						elif "DISCONNECT:" in data:
