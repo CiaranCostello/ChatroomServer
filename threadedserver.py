@@ -114,6 +114,12 @@ class Server(object):
 							#handle a request to disconnect from server ie. kill socket connection and worker thread
 							#parse
 							client_name = parameter(data.split('\n')[2]).strip()
+							for k, v in self.rooms.items():
+								#leave the chatroom if it is in it
+								join_id = v.getJoinId(client_name, client)
+								v.leave(join_id, client, client_name)
+								if chatroom.isEmpty():
+									self.rooms.pop(room_ref, None)
 							client.close()
 
 						elif "CHAT:" in data:

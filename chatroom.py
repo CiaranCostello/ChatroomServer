@@ -53,3 +53,9 @@ class Chatroom(object):
 
 	def isEmpty(self):
 		return not self.clients
+
+	def getJoinId(self, client_name, client):
+		for k, (c_n, c) in self.client.items():
+			if c_n == client_name and client == c:
+				return k
+		return -1
