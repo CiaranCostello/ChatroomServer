@@ -31,9 +31,9 @@ class Chatroom(object):
 	def spread_message(self, message):	
 		print("Spread to group:\n{}".format(message))
 		for k, (c_n, c) in self.clients.items():
-			message = chat_message_spread(self.room_ref, c_n, message)
-			print(message)
-			packet = message.encode("utf-8")
+			m = chat_message_spread(self.room_ref, c_n, message)
+			print(m)
+			packet = m.encode("utf-8")
 			c.send(packet)
 			
 	def leave(self, join_id, client, client_name):
