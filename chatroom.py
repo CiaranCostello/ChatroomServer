@@ -47,7 +47,8 @@ class Chatroom(object):
 		#only if client is in the chat
 		if join_id in self.clients:
 			(client_name, _) = self.clients[join_id]
-			del self.clients[join_id]
 			#notify chat that the client has left
 			message = "{} has left the conversation.".format(client_name)
 			self.spread_message(client_name, message)
+			#remove client from chat
+			del self.clients[join_id]
