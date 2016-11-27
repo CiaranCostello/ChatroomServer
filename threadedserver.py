@@ -119,7 +119,7 @@ class Server(object):
 								#leave the chatroom if it is in it
 								join_id = v.getJoinId(client_name, client)
 								v.disconnect(join_id, client_name)
-								if chatroom.isEmpty():
+								if v.isEmpty():
 									self.rooms.pop(room_ref, None)
 							client.close()
 
