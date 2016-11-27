@@ -51,6 +51,14 @@ class Chatroom(object):
 		#only if client is in the chat
 		self.clients.pop(join_id, None)
 
+	def disconnect(self, join_id, client_name):
+		#notify chat that the client has left
+		if join_id in self.clients:
+			message = "{} has left the conversation.".format(client_name)
+			self.spread_message(client_name, message)
+		#only if client is in the chat
+		self.clients.pop(join_id, None)
+
 	def isEmpty(self):
 		return not self.clients
 

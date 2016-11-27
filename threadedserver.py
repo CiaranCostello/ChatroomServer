@@ -117,7 +117,7 @@ class Server(object):
 							for k, v in self.rooms.items():
 								#leave the chatroom if it is in it
 								join_id = v.getJoinId(client_name, client)
-								v.leave(join_id, client, client_name)
+								v.disconnect(join_id, client_name)
 								if chatroom.isEmpty():
 									self.rooms.pop(room_ref, None)
 							client.close()
