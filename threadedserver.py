@@ -77,7 +77,7 @@ class Server(object):
 							client_name = parameter(data.split("\n")[3])
 							#check if chatroom exists
 							exists = False
-							for k, v in self.rooms:
+							for k, v in self.rooms.items():
 								#join
 								if v.chatroom_name is chatroom_name:
 									v.join(client_name, client, self.ip, self.port)
