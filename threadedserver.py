@@ -29,7 +29,7 @@ class Server(object):
 		self.ip = ip
 		self.running = True
 		self.room_ref_seed = 0
-		self.rooms = defaultdict(list)
+		self.rooms = {}
 		self.roomsLock = threading.Lock()
 
 	def listen(self):
@@ -74,9 +74,7 @@ class Server(object):
 							print("Handling JOIN_CHATROOM message.")
 							#parse
 							chatroom_name = parameter(data.split("\n")[0])
-							print(chatroom_name)
 							client_name = parameter(data.split("\n")[3])
-							print(client_name)
 							#check if chatroom exists
 							exists = False
 							for k, v in self.rooms:
@@ -92,7 +90,7 @@ class Server(object):
 								self.roomsLock.release()
 								#create new chatroom
 								cr = Chatroom(chatroom_name, room_ref)
-								self.rooms[room_ref].append(cr)
+								self.rooms[room_ref] = cr
 								#join the aforesaid chatroom
 								cr.join(client_name, client, self.ip, self.port)
 							print("Joined chatroom.")
@@ -105,8 +103,9 @@ class Server(object):
 							join_id = int(parameter(data.split('\n')[1]))
 							client_name = parameter(data.split('\n')[2])
 							#leave chatroom
-							chatroom = self.rooms[room_ref][0]
+							chatroom = self.rooms[room_ref]
 							chatroom.leave(join_id, client)
+
 
 						elif "DISCONNECT:" in data:
 							print("Handling DISCONNECT message.")
