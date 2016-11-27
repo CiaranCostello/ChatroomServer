@@ -45,12 +45,11 @@ class Chatroom(object):
 		client.send(packet)
 		print("Relied: {}".format(message))
 		#notify chat that the client has left
-		message = "{} has left the conversation.".format(client_name)
-		self.spread_message(client_name, message)
+		if (c_n, c) in self.clients:
+			message = "{} has left the conversation.".format(client_name)
+			self.spread_message(client_name, message)
 		#only if client is in the chat
-		print(self.clients)
 		self.clients.pop(join_id, None)
-		print(self.clients)
 
 	def isEmpty(self):
 		return not self.clients
