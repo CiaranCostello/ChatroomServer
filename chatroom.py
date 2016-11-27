@@ -32,7 +32,7 @@ class Chatroom(object):
 		print("Spread to group:\n{}".format(message))
 		for k, (c_n, c) in self.clients.items():
 			message = chat_message_spread(self.room_ref, c_n, message)
-			print(message++"\n")
+			print(message)
 			packet = message.encode("utf-8")
 			c.send(packet)
 			
