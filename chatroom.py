@@ -45,7 +45,7 @@ class Chatroom(object):
 		client.send(packet)
 		print("Relied: {}".format(message))
 		#notify chat that the client has left
-		if k, (c_n, c) in self.clients:
+		if (client_name, _) in self.clients:
 			message = "{} has left the conversation.".format(client_name)
 			self.spread_message(client_name, message)
 		#only if client is in the chat
