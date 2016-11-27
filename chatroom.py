@@ -55,7 +55,7 @@ class Chatroom(object):
 		return not self.clients
 
 	def getJoinId(self, client_name, client):
-		for k, (c_n, c) in self.client.items():
+		for k, (c_n, c) in self.clients.items():
 			if c_n == client_name and client == c:
 				return k
 		return -1
