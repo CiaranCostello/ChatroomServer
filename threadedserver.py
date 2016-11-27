@@ -79,7 +79,7 @@ class Server(object):
 							exists = False
 							for k, v in self.rooms.items():
 								#join
-								if v.chatroom_name is chatroom_name:
+								if v.chatroom_name == chatroom_name:
 									v.join(client_name, client, self.ip, self.port)
 									exists = True
 							if not exists:
